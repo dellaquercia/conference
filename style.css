@@ -1,0 +1,89 @@
+/* unvisited link */
+a:link {
+    color: #4E513A;
+}
+
+/* visited link */
+a:visited {
+    color: #4E513A;
+}
+
+/* mouse over link */
+a:hover {
+    color: #CC0000;
+}
+
+body {
+  margin-top:   40px;
+  color:	black;
+  background: #CD853F;
+  font-family: courier;
+  font-size:   12px;
+
+}
+
+#headline {
+    text-align:center;
+    font-size:   29px;
+}
+
+
+
+
+#principale {
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    width: 850px;
+    background: #FAEBD7;
+    text-align: justify;
+  }
+
+
+
+
+
+
+#entete {
+  border: none;
+  width: 850px;
+}
+
+#sponsors {
+  border: none;
+  width: 1200px;
+}
+
+#mainbody {
+  padding: 50px;
+  border: none;
+  border-width: thin;
+  border-color: black;
+  width: 750px;
+  height: 100%;
+  font-family: courier;
+  font-size:   14px;
+  font-weight: 500;
+  line-height: 170%;
+
+}
+
+* {margin:0; padding:0; outline:0}
+.nav {height:36px; background:#A0522D; color:#fff; z-index:1100}
+.menu a {float:left; color:#fff; text-decoration:none; width:130px; height:28px; padding-top:8px}
+.menu span {float:left; color:#fff; text-decoration:none; width:130px; height:28px; padding-top:8px}
+.menu a:hover {color:#4f2802}
+.menu {list-style:none; font:16px Arial,Verdana; text-align:center; width:650px; margin:0 auto}
+.menu li {position:relative; float:left; width:130px; z-index:1100}
+.menu ul {display:none; position:absolute; font:normal 13px Arial,Verdana; top:36px; left:0; background:#A0522D; display:none; list-style:none}
+.menu ul li {float:none; border-top:1px solid #ccc; width:130px}
+.menu ul li a, li.menuhover li a, li.menuhover li.menuhover li a {float:none; display:block; background:none; height:22px; padding-top:5px}
+.menu ul li a:hover, li.menuhover li a:hover, li.menuhover li.menuhover li a:hover {background:#999; color:#fff}
+.menu ul li span, li.menuhover li span, li.menuhover li.menuhover li span {float:none; display:block; background:none; height:22px; padding-top:5px}
+.menu ul ul {left:130px; top:0}
+.menu li.submenu {font-weight:bold}
+.menu li.noborder {border-top:none}
+li.menuhover a, li.menuhover li.menuhover a {color:#fff; background:#A0522D}
+li.menuhover span, li.menuhover li.menuhover span {color:#A0522D; background:#A0522D}
+#info {width:180px; background:#eee}
+#info li {width:160px; border-top:none; padding:8px 10px; color:#666; text-align:left}
