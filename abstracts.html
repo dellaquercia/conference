@@ -13,14 +13,20 @@ Higher Structures in Rome
 </title>
 
 <link rel="stylesheet" type="text/css" href="style.css" />
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
 <script>
   window.MathJax = {
+    // Force the internal HTML renderer to scale the fonts thinner globally
+    chtml: {
+      scale: 1,
+      minScale: 1,
+      matchFontHeight: true
+    },
     options: {
       renderActions: {
         findCustomInline: [10, function (doc) {
           for (const node of document.querySelectorAll('m')) {
-            // The 'false' parameter explicitly forces inline mode
-            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], false);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax, false);
             const text = document.createTextNode('');
             node.parentNode.replaceChild(text, node);
             math.start = {node: text, delim: '', n: 0};
@@ -32,7 +38,30 @@ Higher Structures in Rome
     }
   };
 </script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<script src="https://jsdelivr.net" id="MathJax-script" async></script>
+
+<style>
+  /* Use a combination of scaling and hardware antialiasing to force thinness */
+  m mjx-container {
+    color: #000000 !important;
+    font-weight: 300 !important;              /* Request light weight variant */
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+    display: inline-block;
+    transform: scaleX(0.92);                  /* Subtly narrow the characters horizontally */
+    transform-origin: left center;
+  }
+  
+  /* Shave down the internal vector paths that MathJax outputs */
+  m mjx-container chtml,
+  m mjx-container mjx-c {
+    stroke: none !important;
+    font-weight: 300 !important;
+  }
+</style>
+
 	  <style>
   /* Target only MathJax containers inside your inline math tags */
   m mjx-container {
