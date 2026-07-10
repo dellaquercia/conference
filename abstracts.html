@@ -14,35 +14,33 @@ Higher Structures in Rome
 
 <link rel="stylesheet" type="text/css" href="style.css" />
 
-
-
-	  <link rel="stylesheet" href="https://jsdelivr.net">
-<script defer src="https://jsdelivr.net"></script>
-
-<!-- Execute JavaScript to process our custom math tags -->
-<script defer>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Find every <m> tag on the page and render it as inline math
-    document.querySelectorAll('m').forEach(function(element) {
-      katex.render(element.textContent, element, {
-        displayMode: false, // Forces inline rendering
-        throwOnError: false
-      });
-    });
-  });
+<script>
+  window.MathJax = {
+    options: {
+      renderActions: {
+        findCustomInline: [10, function (doc) {
+          for (const node of document.querySelectorAll('m')) {
+            // The 'false' parameter explicitly forces inline mode
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax, false);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    }
+  };
 </script>
+<script src="https://jsdelivr.net" id="MathJax-script" async></script>
 
-<!-- CSS: Forces pure black and uses hardware antialiasing for thin lines -->
 <style>
-  m .katex {
+  /* Keeps the math pure black without adding any extra styling */
+  mjx-container {
     color: #000000 !important;
-    font-weight: 300 !important; /* Targets the lighter font variant weight */
-    -webkit-font-smoothing: antialiased !important;
-    -moz-osx-font-smoothing: grayscale !important;
   }
 </style>
-
-	  
 
 	    </head>
 
