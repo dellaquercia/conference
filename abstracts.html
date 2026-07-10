@@ -70,27 +70,29 @@ Higher Structures in Rome
 <br/><br/>
 
 <script type="text/javascript">
+function toggle_visibility(id) {
+    var e = document.getElementById(id);
+    e.style.display = ((e.style.display != 'none') ? 'none' : 'block');
+}
 
-	function toggle_all_abstracts() {
-    // Finds all divs starting with "sem"
+function toggle_all_abstracts() {
     var abstracts = document.querySelectorAll('div[id^="sem"]');
     
-    // FIX: Added [0] to check the state of the VERY FIRST abstract in the list
-    var checkState = abstracts[0].style.display === 'none' || abstracts[0].style.display === '';
-    var newDisplayValue = checkState ? 'block' : 'none';
+    // Safety check: do nothing if no abstracts exist on the page yet
+    if (abstracts.length === 0) return; 
     
-    // Force every single abstract to open or close together
+    // CORRECTED: Checks the first individual abstract item inside the list
+    var isHidden = abstracts[0].style.display === 'none' || abstracts[0].style.display === '';
+    var newDisplayValue = isHidden ? 'block' : 'none';
+    
     abstracts.forEach(function(el) {
         el.style.display = newDisplayValue;
     });
 }
-	
-function toggle_visibility(id) {
-	var e = document.getElementById(id);
-	e.style.display = ((e.style.display!='none') ? 'none' : 'block');
-	}
 </script>
 
+
+	
 <ul style="margin-left:0px;list-style-type: none;">
 <li>
 	<b> Domenico Fiorenza</b>
