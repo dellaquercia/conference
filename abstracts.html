@@ -65,14 +65,26 @@ Higher Structures in Rome
     <br/></h2>
 <br/>
 
-	Click on a title to show the abstract (or click <a href="#" style="text-decoration: none;" onclick="toggle_visibility('semA');toggle_visibility('semB');toggle_visibility('semC');toggle_visibility('semD');toggle_visibility('semE');
-toggle_visibility('semF');toggle_visibility('semG');toggle_visibility('semH');toggle_visibility('semI');toggle_visibility('semL');toggle_visibility('semM');toggle_visibility('semN');
-toggle_visibility('semO');toggle_visibility('semP');toggle_visibility('semQ');toggle_visibility('semR');toggle_visibility('semS');toggle_visibility('semT');toggle_visibility('semU');"> here </a>
-to show or hide them all):
+	Click on a title to show the abstract (or click <a href="#" style="text-decoration: none;" onclick="toggle_all_abstracts(); return false;"> here </a> to show or hide them all):
 
 <br/><br/>
 
 <script type="text/javascript">
+
+	function toggle_all_abstracts() {
+    // Finds all divs starting with "sem"
+    var abstracts = document.querySelectorAll('div[id^="sem"]');
+    
+    // FIX: Added [0] to check the state of the VERY FIRST abstract in the list
+    var checkState = abstracts[0].style.display === 'none' || abstracts[0].style.display === '';
+    var newDisplayValue = checkState ? 'block' : 'none';
+    
+    // Force every single abstract to open or close together
+    abstracts.forEach(function(el) {
+        el.style.display = newDisplayValue;
+    });
+}
+	
 function toggle_visibility(id) {
 	var e = document.getElementById(id);
 	e.style.display = ((e.style.display!='none') ? 'none' : 'block');
