@@ -15,26 +15,34 @@ Higher Structures in Rome
 <link rel="stylesheet" type="text/css" href="style.css" />
 
 
-<link rel="stylesheet" href="https://jsdelivr.net">
+
+	  <link rel="stylesheet" href="https://jsdelivr.net">
 <script defer src="https://jsdelivr.net"></script>
 
-<!-- 2. Auto-renderer config: Looks for <m> tags and renders them strictly INLINE -->
-<script defer src="https://jsdelivr.net"
-    onload="renderMathInElement(document.body, {
-        delimiters: [{left: '<m>', right: '</m>', display: false}]
-    });">
+<!-- Execute JavaScript to process our custom math tags -->
+<script defer>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Find every <m> tag on the page and render it as inline math
+    document.querySelectorAll('m').forEach(function(element) {
+      katex.render(element.textContent, element, {
+        displayMode: false, // Forces inline rendering
+        throwOnError: false
+      });
+    });
+  });
 </script>
 
-<!-- 3. Safe CSS: Forces pure black and uses hardware text-smoothing for thinness -->
+<!-- CSS: Forces pure black and uses hardware antialiasing for thin lines -->
 <style>
-  .katex {
+  m .katex {
     color: #000000 !important;
-    font-weight: 300 !important; /* Forces the lightest built-in font variant */
+    font-weight: 300 !important; /* Targets the lighter font variant weight */
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;
   }
 </style>
 
+	  
 
 	    </head>
 
