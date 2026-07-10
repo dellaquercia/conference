@@ -73,11 +73,51 @@ to show or hide them all):
 <br/><br/>
 
 <script type="text/javascript">
+  // Toggles a single abstract block and scrolls it into view
+  function toggle_visibility(id) {
+    var e = document.getElementById(id);
+    if (e) {
+      if (e.style.display !== 'block') {
+        e.style.display = 'block';
+        
+        // Smoothly scroll the container into the visible window area
+        setTimeout(function() {
+          e.scrolltoView({ behavior: 'smooth', block: 'nearest' });
+        }, 50); // Short delay ensures the browser calculates the height first
+        
+      } else {
+        e.style.display = 'none';
+      }
+    }
+  }
+
+  // Automatically toggles ALL abstracts on the page
+  function toggle_all_abstracts() {
+    var abstracts = document.querySelectorAll('.abstract-box');
+    if (abstracts.length === 0) return;
+
+    // Check the first element to decide whether to open or close all
+    var targetDisplay = (abstracts[0].style.display !== 'block') ? 'block' : 'none';
+    
+    abstracts.forEach(function(el) {
+      el.style.display = targetDisplay;
+    });
+
+    // If opening all, scroll the very first abstract into view
+    if (targetDisplay === 'block') {
+      setTimeout(function() {
+        abstracts[0].scrolltoView({ behavior: 'smooth', block: 'nearest' });
+      }, 50);
+    }
+  }
+</script>
+
+<!-- <script type="text/javascript">
 function toggle_visibility(id) {
 	var e = document.getElementById(id);
 	e.style.display = ((e.style.display!='none') ? 'none' : 'block');
 	}
-</script>
+</script> -->
 	
 <ul style="margin-left:0px;list-style-type: none;">
 <li>
