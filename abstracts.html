@@ -75,23 +75,21 @@ function toggle_visibility(id) {
     e.style.display = ((e.style.display != 'none') ? 'none' : 'block');
 }
 
+// This handles the top link without breaking anything else
 function toggle_all_abstracts() {
     var abstracts = document.querySelectorAll('div[id^="sem"]');
+    if (abstracts.length === 0) return;
+
+    // Check the actual computed visibility style of the first item
+    var currentDisplay = window.getComputedStyle(abstracts[0]).display;
+    var newDisplayValue = (currentDisplay === 'none') ? 'block' : 'none';
     
-    // Safety check: do nothing if no abstracts exist on the page yet
-    if (abstracts.length === 0) return; 
-    
-    // CORRECTED: Checks the first individual abstract item inside the list
-    var isHidden = abstracts[0].style.display === 'none' || abstracts[0].style.display === '';
-    var newDisplayValue = isHidden ? 'block' : 'none';
-    
+    // Set them all uniformly
     abstracts.forEach(function(el) {
         el.style.display = newDisplayValue;
     });
 }
 </script>
-
-
 	
 <ul style="margin-left:0px;list-style-type: none;">
 <li>
