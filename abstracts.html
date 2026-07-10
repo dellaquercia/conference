@@ -33,6 +33,15 @@ Higher Structures in Rome
   };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+	  <style>
+  /* Target only MathJax containers inside your inline math tags */
+  m mjx-container {
+    color: #000000 !important;          /* Forces the math symbols to be solid black */
+    -webkit-text-stroke: 0.18px white;  /* Uses white stroke to shave down the black line thickness */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+</style>
 	    </head>
 
 <body style="font-family: courier;">      
@@ -79,7 +88,9 @@ function toggle_visibility(id) {
 
 <ul style="margin-left:0px;list-style-type: none;">
 <li>
-	<b> Domenico Fiorenza</b>: <a href="javascript:;" style="text-decoration: none;" onclick="toggle_visibility('semA');"> <i> BV algebras, they do not really exist </i></a><br/>
+	<b> Domenico Fiorenza</b>
+	<br>
+	<a href="javascript:;" style="text-decoration: none;" onclick="toggle_visibility('semA');"> <i> BV algebras, they do not really exist </i></a><br/>
 		<center><div id="semA" align="justify" style="display:none; width:90%; line-height:150%; border:1px; padding:5px; margin:10px; border-style: dotted; border-color: gray;	
 					background-color: rgb(255, 255, 240);">
 		Given a differential graded Gerstenhaber algebra <m>(\mathcal{G}, d, \cdot ,\{,\})</m> and a bigraded homotopy Cartan calculus for it, the choice of a Poincaré duality element enhances 
