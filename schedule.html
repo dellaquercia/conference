@@ -106,29 +106,27 @@ Schedule
 			20:30-23:59 
 			Conference Dinner 
 
-						<!-- FIX: inline-block forces (itinerary) to stay on this line, next to Dinner -->
-			<details style="display: inline-block; font-size: 0.95em; vertical-align: baseline; margin-left: 5px;">
-				<summary style="display: inline; list-style: none; cursor: pointer; color: #333; text-decoration: none; font-weight: 500;">
-					(itinerary)
-				</summary>
-			<!-- 
+			<a href="#itinerary-panel" onclick="document.getElementById('itinerary-panel').style.display = document.getElementById('itinerary-panel').style.display === 'block' ? 'none' : 'block'; return false;" style="color: #333; text-decoration: none; font-weight: 500; font-size: 0.95em; margin-left: 5px; cursor: pointer;">
+				(itinerary)
+			</a>
+
+			<!-- The dropdown panel sits securely beneath, completely separate from the line row -->
+			<span id="itinerary-panel" style="display: none; margin-top: 10px; padding: 15px; border: 1px solid #ccc; background-color: #f9f9f9; border-radius: 4px; max-width: 500px; text-align: center;">
+				<span style="text-align: left; margin-top: 0; margin-bottom: 12px; color: #333; display: block;">
+					The conference dinner will take place at the Rooftop Bar of the <i>The Hive Hotel</i>, located in Via Torino 6, which is less than a 7min walk (550m)
+					from Termini train station, for example along the path (or any other, also homotopically nonequivalent) indicated in red on the map below.  
+				</span>
+				<a href="hive.png" target="_blank" rel="noopener" style="cursor: zoom-in; display: block;">
+					<img src="hive.png" alt="Route Map" style="width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px;">
+				</a>
+			</span>
+
+						<!-- 
 			
 			<details style="display: inline; margin-left: 0px; font-size: 0.95em;">
     <summary style="display: inline; list-style: none; cursor: pointer; color: #333; text-decoration: none; font-weight: 500;">
       <span style="display: none;"></span>(itinerary)
     </summary> -->
-
-<!-- FIX: Changed from <div> to <span> with block display to keep HTML valid inside <p> -->
-				<span style="margin-top: 10px; padding: 15px; border: 1px solid #ccc; background-color: #f9f9f9; border-radius: 4px; max-width: 500px; text-align: center; display: block;">
-					<span style="text-align: left; margin-top: 0; margin-bottom: 12px; color: #333; display: block;">
-						The conference dinner will take place at the Rooftop Bar of the <i>The Hive Hotel</i>, located in Via Torino 6, which is less than a 7min walk (550m)
-						from Termini train station, for example along the path (or any other, also homotopically nonequivalent) indicated in red on the map below.  
-					</span>
-
-					<a href="hive.png" target="_blank" rel="noopener" style="cursor: zoom-in; display: block;">
-						<img src="hive.png" alt="Route Map" style="width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px;">
-					</a>
-				</span>
 				
     <!-- <div style="margin-top: 10px; padding: 15px; border: 1px solid #ccc; background-color: #f9f9f9; border-radius: 4px; max-width: 500px; text-align: center; display: block;">
       <p style="text-align: left; margin-top: 0; margin-bottom: 12px; color: #333;">
