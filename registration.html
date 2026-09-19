@@ -53,7 +53,6 @@ Register <a href="https://forms.gle/JKNkwLKXpew2tdieA" style="text-decoration:no
 Expires on 30 June 2026. 
 We are complete! -->
 
-
 <div class="row-gallery-wrapper">
     <style>
         /* Scoped styles specifically for this image row layout */
@@ -87,7 +86,7 @@ We are complete! -->
             transform: scale(1.03);
         }
 
-        /* Lightbox modal styles */
+        /* Lightbox modal styles for ORIGINAL image scale */
         .gallery-lightbox {
             display: none;
             position: fixed;
@@ -96,16 +95,25 @@ We are complete! -->
             width: 100vw;
             height: 100vh;
             background-color: rgba(0, 0, 0, 0.85);
-            z-index: 99999; /* Higher priority to float above page layers */
-            justify-content: center;
-            align-items: center;
+            z-index: 99999;
+            /* Allows scrolling if the original image size exceeds the screen size */
+            overflow: auto; 
             cursor: zoom-out;
         }
 
         .gallery-lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
+            /* Removes scaling limits to force native pixel dimensions */
+            max-width: none !important;
+            max-height: none !important;
+            width: auto !important;
+            height: auto !important;
+            
+            /* Centers the unscaled image inside the scrolling overlay window */
+            display: block;
+            margin: auto;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            
             border-radius: 4px;
             box-shadow: 0 5px 25px rgba(0,0,0,0.5);
         }
@@ -144,7 +152,7 @@ We are complete! -->
     <script>
         function showPopupGalleryImg(sourceUrl) {
             document.getElementById('galleryPopupTarget').src = sourceUrl;
-            document.getElementById('galleryPopupOverlay').style.display = 'flex';
+            document.getElementById('galleryPopupOverlay').style.display = 'block'; // Block mode helps absolute position alignment
         }
         
         // Escape key integration to close the popup window seamlessly
@@ -155,6 +163,7 @@ We are complete! -->
         });
     </script>
 </div>
+
 	
 	
 </div>
