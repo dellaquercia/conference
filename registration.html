@@ -30,8 +30,8 @@ Higher Structures in Rome
     <li class="nodiv">
       <a href="index.html">Home</a>
     </li>
-    <li><a href="schedule.html">Programme</a></li>
-<li><a href="registration.html">Registration</a></li>
+    <li><a href="schedule.html">Programme</a></li>  
+<li><a href="registration.html">Conference Pictures</a></li>
  	<li><a href="participants.html">Participants</a></li>
 	<li><a href="abstracts.html">Abstracts</a></li>
   </ul>
@@ -40,14 +40,123 @@ Higher Structures in Rome
 <div id='mainbody'>
 
 
+	
+
+
+	
+<!-- 
   <h2 style="text-align:center;font-size:24px;line-height:140%">
 Registration
     <br/></h2>
 <br/>
 <!-- Register <a href="https://forms.gle/JKNkwLKXpew2tdieA" style="text-decoration:none"> here</a>.
 Expires on 30 June 2026. -->
-We are complete!
-	<br/><br/>
+We are complete! -->
+
+
+<div class="row-gallery-wrapper">
+    <style>
+        /* Scoped styles specifically for this image row layout */
+        .image-row-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 0;
+        }
+
+        .gallery-item {
+            flex: 1;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            display: block;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Lightbox modal styles */
+        .gallery-lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 99999; /* Higher priority to float above page layers */
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        .gallery-lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+        }
+
+        /* Collapse row to single items on small smartphones */
+        @media (max-width: 600px) {
+            .image-row-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .gallery-item {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
+
+    <!-- Thumbnail Row -->
+    <div class="image-row-container">
+        <div class="gallery-item">
+            <img src="questo.jpg" alt="Questo" onclick="showPopupGalleryImg(this.src)">
+        </div>
+        <div class="gallery-item">
+            <img src="equesto.jpg" alt="Equesto" onclick="showPopupGalleryImg(this.src)">
+        </div>
+        <div class="gallery-item">
+            <img src="ancora.jpg" alt="Ancora" onclick="showPopupGalleryImg(this.src)">
+        </div>
+    </div>
+
+    <!-- Overlay Popup Layer -->
+    <div id="galleryPopupOverlay" class="gallery-lightbox" onclick="this.style.display='none'">
+        <img id="galleryPopupTarget" src="" alt="Enlarged View">
+    </div>
+
+    <script>
+        function showPopupGalleryImg(sourceUrl) {
+            document.getElementById('galleryPopupTarget').src = sourceUrl;
+            document.getElementById('galleryPopupOverlay').style.display = 'flex';
+        }
+        
+        // Escape key integration to close the popup window seamlessly
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.getElementById('galleryPopupOverlay').style.display = 'none';
+            }
+        });
+    </script>
+</div>
+	
+	
 </div>
 </div>
 </body>
