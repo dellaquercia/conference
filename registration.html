@@ -53,6 +53,7 @@ Register <a href="https://forms.gle/JKNkwLKXpew2tdieA" style="text-decoration:no
 Expires on 30 June 2026. 
 We are complete! -->
 
+	<!-- Insert this entire block inside your <div id="mainbody"> -->
 <div class="row-gallery-wrapper">
     <style>
         /* Scoped styles specifically for this image row layout */
@@ -86,7 +87,7 @@ We are complete! -->
             transform: scale(1.03);
         }
 
-        /* Lightbox modal styles for ORIGINAL image scale */
+        /* Lightbox modal overlay background */
         .gallery-lightbox {
             display: none;
             position: fixed;
@@ -96,26 +97,40 @@ We are complete! -->
             height: 100vh;
             background-color: rgba(0, 0, 0, 0.85);
             z-index: 99999;
-            /* Allows scrolling if the original image size exceeds the screen size */
             overflow: auto; 
-            cursor: zoom-out;
+            box-sizing: border-box;
         }
 
+        /* Base styles for the popup image */
         .gallery-lightbox img {
-            /* Removes scaling limits to force native pixel dimensions */
+            display: block;
+            margin: auto;
+            border-radius: 4px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            transition: max-width 0.2s, max-height 0.2s;
+        }
+
+        /* STATE 1: Fits cleanly into the browser viewport */
+        .gallery-lightbox img.fit-browser {
+            max-width: 90%;
+            max-height: 90%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            cursor: zoom-in;
+        }
+
+        /* STATE 2: Strict 1:1 original physical dimension layout */
+        .gallery-lightbox img.original-size {
             max-width: none !important;
             max-height: none !important;
             width: auto !important;
             height: auto !important;
-            
-            /* Centers the unscaled image inside the scrolling overlay window */
-            display: block;
-            margin: auto;
-            position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            
-            border-radius: 4px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            position: relative; /* Allows the wrapping container to scroll it naturally */
+            margin-top: 5vh;
+            margin-bottom: 5vh;
+            cursor: zoom-out;
         }
 
         /* Collapse row to single items on small smartphones */
@@ -145,24 +160,54 @@ We are complete! -->
     </div>
 
     <!-- Overlay Popup Layer -->
-    <div id="galleryPopupOverlay" class="gallery-lightbox" onclick="this.style.display='none'">
-        <img id="galleryPopupTarget" src="" alt="Enlarged View">
+    <div id="galleryPopupOverlay" class="gallery-lightbox" onclick="handleOverlayClick(event)">
+        <img id="galleryPopupTarget" class="fit-browser" src="" alt="Enlarged View" onclick="toggleImageSize(event)">
     </div>
 
     <script>
+        const overlay = document.getElementById('galleryPopupOverlay');
+        const targetImg = document.getElementById('galleryPopupTarget');
+
         function showPopupGalleryImg(sourceUrl) {
-            document.getElementById('galleryPopupTarget').src = sourceUrl;
-            document.getElementById('galleryPopupOverlay').style.display = 'block'; // Block mode helps absolute position alignment
+            targetImg.src = sourceUrl;
+            // Always reset to browser-fitting state on initial open
+            targetImg.className = 'fit-browser';
+            overlay.style.display = 'block';
+        }
+
+        function toggleImageSize(event) {
+            // Prevent the click on the image from bleeding through and closing the overlay background
+            event.stopPropagation(); 
+            
+            if (targetImg.classList.contains('fit-browser')) {
+                targetImg.className = 'original-size';
+            } else {
+                targetImg.className = 'fit-browser';
+                overlay.scrollTo(0, 0); // Reset scroll position when shrinking back
+            }
+        }
+
+        function handleOverlayClick(event) {
+            // Only close if they explicitly clicked the dark background, not the photo
+            if (event.target === overlay) {
+                closeGallery();
+            }
+        }
+
+        function closeGallery() {
+            overlay.style.display = 'none';
+            targetImg.src = '';
         }
         
         // Escape key integration to close the popup window seamlessly
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
-                document.getElementById('galleryPopupOverlay').style.display = 'none';
+                closeGallery();
             }
         });
     </script>
 </div>
+
 
 	
 	
